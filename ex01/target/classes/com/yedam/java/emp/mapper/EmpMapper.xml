@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 어느 인터페이스와 연결할 건지 지정 -->
+  <!-- 전체조회 -->
+ <mapper namespace="com.yedam.java.emp.mapper.EmpMapper">
+ 	<!-- list타입 이라도 list를 이루는 주체는 EmpVO, list타입으로 정의 안해도 됨 -->
+ 	<select id="getEmpList" resultType="EmpVO">
+ 		SELECT * FROM employees
+ 		
+ 		<!-- <where>
+	 		<if test="departmentId != null">
+	 			department_id = #{departmentId} AND
+	 		</if>
+	 		<if test="managerId != null">
+	 			manager_id  #{managerId} AND
+	 		</if>
+	 		job_id = #{jobId}
+ 		</where> -->
+ 	</select>
+ 	
+ 	
+ 	<!-- 단건조회 -->
+ 	<select id="getEmp" parameterType="EmpVO" 
+ 												 resultType="EmpVO">
+		SELECT *
+		<!-- employee_id,
+					 first_name,
+					 last_name,
+					 <if test="!employeeId.equals('100')">
+					 email,
+					 </if>
+					 hire_date,
+					 job_id,
+					 salary -->
+		FROM   employees
+		WHERE  employee_id = #{employeeId}
+ 	</select>
+ 	
+ 	
+ 	<insert id="insertEmp" parameterType="EmpVO">
+	 	<!-- selectKey값이 파라미터로 넘겨준 후 insert나 update할 때 파라미터값으로 insert/update됨 (자바에서도 확인가능)-->
+ 		<!-- insert, update -->
+		<selectKey keyProperty="employeeId" order="BEFORE" resultType="String">
+			SELECT MAX(employee_id)+1 FROM employees
+		</selectKey> 	
+ 		INSERT INTO employees (employee_id, first_name, last_name, email, hire_date, job_id, salary)
+		VALUES (#{employeeId}, #{firstName}, #{lastName}, #{email}, sysdate, #{jobId}, #{salary})
+ 	</insert>
+ 	
+ 	<!-- void는 따로 파라미터 지정 안해줘도 됨 알아서 매핑됨 : 결과값은 안나옴-->
+ 	<!-- #뒤에있는건 그냥 매개변수의 이름을 가져오는 것 -->
+ 	<!-- <update id="updateSalary" parameterType="Integer">
+ 		UPDATE employees
+ 		SET salary = salary*1.1
+ 		WHERE employee_id = #{empId}
+ 	</update> -->
+ 	
+ 	<!-- 수정 -->
+ 	<update id="updateEmp" parameterType="EmpVO">
+ 		UPDATE employees
+ 		<!-- SET first_name = #{firstName}, 
+ 				last_name = #{lastName}, 
+ 				email = #{email} -->
+ 				
+ 		<!-- if문 쓰는 set절 -->
+ 		<set>
+ 			<if test="firstName != null">
+ 				first_name = #{firstName},
+ 			</if>
+ 			<if test="lastName != null">
+ 				last_name = #{lastName},
+ 			</if>
+ 			<if test="email != null">
+ 				email = #{email}
+ 			</if>
+ 		</set>
+ 		
+ 		WHERE employee_id = #{employeeId}
+ 	</update>
+
+ 	<!-- 삭제 -->
+ 	<delete id="deleteEmpInfo" parameterType="Integer">
+ 		DELETE FROM employees
+ 		WHERE employee_id = #{employeeId}
+ 	</delete>
+ 	
+ 	<!-- 등록 -->
+ 	<insert id="insertEmpInfo" parameterType="String">
+ 		INSERT INTO employees
+		VALUES (#{employeeId}, #{firstName}, #{lastName}, #{email}, #{phoneNumber}, #{hireDate}, #{jobId}, #{salary}, #{commissionPct}, #{managerId}, #{departmentId})
+ 	</insert>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
