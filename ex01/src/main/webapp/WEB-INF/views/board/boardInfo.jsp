@@ -28,6 +28,8 @@
 		</tr>
 		<tr>
 			<th>첨부파일</th>
+		<!-- <img src=" ${pageContext.request.contextPath }/resources/images/${board.image }" />" alt="이미지"/> -->
+		<!-- /resources/images/ : 서블릿에 매핑되어 있어서 관리가 가능한것 -->
 			<td><img src="<c:url value="/resources/images/${board.image }" />" alt="이미지"/></td>
 		</tr>
 		<tr>

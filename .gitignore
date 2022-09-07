@@ -93,4 +93,8 @@ local.properties
 hs_err_pid*
 replay_pid*
 
+##Servers 폴더 무시
+Servers/
+Servers2/
+
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="mainTemplate" template="/WEB-INF/views/tiles/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+	</definition>
+	
+	<!--  -->
+	<definition name="home" extends="mainTemplate" >
+		<put-attribute name="main" value="/WEB-INF/views/home.jsp" />
+	</definition>
+	
+	<!-- extends: 기존에 있던 것 땡겨 쓴다는 것, *는 많아야 2개쓰임 -> 1개에 포맷에 맞춰서 타일즈 쓰는데,경로가 2개라서 
+	관리를 나눠서 트리구조가 생성됨 -> 컨트롤러가 반환하지 않는 값을 줘야함 -> 보통 template 이름을 많이씀 -->
+	<definition name="*/*" extends="mainTemplate">
+		<!-- / 를 기준으로 경로 지어짐 -> ex) WEB-INF/view/board/list.jsp -->
+		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="admin/*" extends="daminTemplate">
+	<!-- 지정한폴더를 순차적으로 검색함 : admin  -->
+		<put-attribute name="content" value="/WEB-INF/user1/{1}.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>

@@ -15,7 +15,7 @@
 		<table>
 			<tr>
 				<th>번호</th>
-				<td><input type="number" name="bno" value="${ no } readonly"></td>
+				<td><input type="number" name="bno" value="${ no }" readonly"></td>
 			</tr>
 			<tr>
 				<th>제목</th>
