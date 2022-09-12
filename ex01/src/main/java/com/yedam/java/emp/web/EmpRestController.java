@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yedam.java.emp.service.EmpService;
 import com.yedam.java.emp.service.EmpVO;
 
-//view�� �ƴ϶� data�� ������ (rest����)
 @RestController
 //동일한 출처를 통해서 들어오는 것이 아닌, 외부에 대한 요청을 승인하는 것 ("*"): 보안무력화 / ("주소")
 @CrossOrigin(origins = "*")
@@ -33,7 +32,6 @@ public class EmpRestController {
 	
 	//단건조회
 	@GetMapping("emp/{employeeId}")
-	//��ΰ��̶� pathVariable�� ���� �޾ƿ���
 	public EmpVO empFind(@PathVariable String  employeeId) {
 		EmpVO empVO = new EmpVO();
 		empVO.setEmployeeId(employeeId);
