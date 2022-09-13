@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class TodoVO {
-	private int todoId;
-	private int todoNo;
+	private int id;
+	private int no;
 	private String contents;
 	private int todoyn;
 }

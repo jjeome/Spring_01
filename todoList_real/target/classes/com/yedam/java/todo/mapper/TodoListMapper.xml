@@ -9,7 +9,7 @@
   	</select>
   	
   	<insert id="todoInsert" parameterType="TodoVO">
-  		<selectKey keyProperty="todoNo" order="BEFORE" resultType="Integer">
+  		<selectKey keyProperty="no" order="BEFORE" resultType="Integer">
   			SELECT NVL(MAX(no), 0)+1 as todoNo FROM todo
   		</selectKey>
   		
@@ -19,8 +19,8 @@
   											contents
   											)
   		VALUES           (
-  											#{todoNo},
-  											#{todoId},
+  											#{no},
+  											#{id},
   											#{contents}
   											)
   	</insert>
@@ -28,25 +28,21 @@
   	<update id="todoUpdate" parameterType="TodoVO">
   		UPDATE todo
   	<set>
-  		<if test="todoId != null">
-  			id = #{todoId},
+  		<if test="todoyn == 0">
+			todoyn = 1  		
   		</if>
-  		<if test="contents != null">
-  			contents = #{contents},
-  		</if>
-  		<if test="todoyn != null">
-				todoyn = #{todoyn}  		
+  		<if test="todoyn == 1">
+  			todoyn = 0
   		</if>
   	</set>
-  		WHERE id = #{todoId}
+  		WHERE no = #{no}
   	</update>
   	
   	<delete id="todoDelete" parameterType="Integer">
   		DELETE FROM todo
-  		WHERE id = #{todoId}
+  		WHERE no = #{no}
   	</delete>
   </mapper>
-  
   
   
   
