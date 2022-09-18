@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.java.product.mapper.ProductMapper">
+
+	<!-- 상품 조회 -->
+	<select id="selectProductList" resultType="ProductVO">
+		SELECT product_id,
+					 product_name,
+					 product_price,
+					 manager_id,
+					 product_date,
+					 company 
+		FROM PRODUCT_TBL_10
+	</select>
+	
+	<!-- 상품 번호 조회 -->
+	<select id="getProductNo" resultType="Integer">
+		SELECT NVL(MAX(product_id),0)+1 AS productId FROM PRODUCT_TBL_10
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="insertProduct" parameterType="ProductVO">
+		INSERT INTO PRODUCT_TBL_10
+					 (PRODUCT_ID,
+					  PRODUCT_NAME,
+					  PRODUCT_PRICE,
+					  PRODUCT_INFO,
+					  PRODUCT_DATE,
+					  COMPANY,
+					  MANAGER_ID)
+		VALUES (
+						#{productId}
+						, #{productName}
+						, #{productPrice}
+						, #{productInfo}
+						, #{productDate}
+						, #{company}
+						, #{managerId}
+						)
+	</insert>
+	
+	<!-- 매출 현황 조회 -->
+	<select id="selectSalesList" resultType="SalesVO">
+		SELECT * FROM SALE_TBL_10
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
