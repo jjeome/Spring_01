@@ -17,4 +17,8 @@
 		<!-- java.sql.Timestamp를 java.util.Date 형으로 변환 -->
 		<typeHandler javaType="java.sql.Date" handler="org.apache.ibatis.type.DateTypeHandler"/>
 	</typeHandlers>
+	<mappers>
+		<mapper class="com.yedam.java.board.mapper"/>
+		<mapper class="com.yedam.java.test.mapper"/>
+	</mappers>
 </configuration>
